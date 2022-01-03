@@ -19,13 +19,6 @@
   \fi
 }
 
-% print version has different margins to accommodate the spine of the book
-\ifdefined\printversion
-  \usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
-\else
-  \usepackage[a4paper,margin=3.2cm,inner=2.7cm,outer=2.7cm]{geometry}
-\fi
-
 %% | ----------------- commonly used packages ----------------- |
 
 \usepackage[english]{babel}
@@ -61,6 +54,14 @@
 \usepackage{multicol}
 \usepackage{subfig}
 \usepackage[export]{adjustbox}
+
+% print version has different margins to accommodate the spine of the book
+% do not move this around, or it stops working
+\ifdefined\printversion
+  \usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
+\else
+  \usepackage[a4paper,margin=3.2cm,inner=2.7cm,outer=2.7cm]{geometry}
+\fi
 
 \hyphenation{}
 
