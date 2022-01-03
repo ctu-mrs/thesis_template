@@ -20,8 +20,12 @@
 \newcommand{\Date}{\Month~\Year}
 \newcommand{\Location}{Prague}
 
+%% | ---------------------- configuration --------------------- |
+
 % most of the configuration stuff happens here
 \input{src/document_setup.tex}
+
+%% | ---------------------- the contents ---------------------- |
 
 \begin{document}
 
@@ -31,10 +35,9 @@
 
 \input{src/title}
 
+% set up the page style for the "intro" pages
 \pagestyle{plain}
-
 \conditionalClearPage
-
 \pagenumbering{roman}
 
 %% --------------------------------------------------------------
@@ -62,13 +65,13 @@
 
 \conditionalClearPage
 
-\begin{changemargin}{0.8cm}{0.8cm}
-
-~\vfill{}
-
 %% --------------------------------------------------------------
 %% |                        Abbreviations                       |
 %% --------------------------------------------------------------
+
+\begin{changemargin}{0.8cm}{0.8cm}
+
+~\vfill{}
 
 \section*{Abbreviations}
 
@@ -80,10 +83,16 @@
 \end{changemargin}
 
 \conditionalClearPage
+
+%% --------------------------------------------------------------
+%% |                      Table of contents                     |
+%% --------------------------------------------------------------
+
 \tableofcontents
 
 \conditionalClearPage
 
+% set up the full page style
 \pagestyle{full}
 
 %% --------------------------------------------------------------
