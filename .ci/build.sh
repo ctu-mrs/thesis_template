@@ -7,8 +7,8 @@ sudo apt-get -y install texlive texlive-latex-extra texlive-lang-czechslovak tex
 
 pdflatex -interaction=nonstopmode main.tex
 pdftoppm -jpeg main.pdf thumbnail.jpg
-montage *.jpg -mode Concatenate -tile 3x2 montage.jpg
-convert montage.jpg -resize 1280 -quality 80 montage.jpg
+montage *.jpg -mode Concatenate -tile 3x1 montage.jpg
+convert montage.jpg -resize 1280 -quality 80 montage-0.jpg
 mkdir -p output
 mv main.pdf output/thesis_template.pdf
 mv montage.jpg output/thumbnail.jpg
