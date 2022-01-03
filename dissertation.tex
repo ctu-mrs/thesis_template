@@ -1,4 +1,5 @@
 % enable this to activate the version for PRINT
+% disable this to make the pdf symmetric and without white pages
 % => asymmetric alternating left/right margins
 \newcommand*{\printversion}{}%
 
@@ -19,9 +20,14 @@
 \newcommand{\Date}{\Month~\Year}
 \newcommand{\Location}{Prague}
 
+% most of the configuration stuff happens here
 \input{src/document_setup.tex}
 
 \begin{document}
+
+%% --------------------------------------------------------------
+%% |                         Title page                         |
+%% --------------------------------------------------------------
 
 \input{src/title}
 
@@ -30,10 +36,23 @@
 \conditionalClearPage
 
 \pagenumbering{roman}
+
+%% --------------------------------------------------------------
+%% |                       Acknowledgments                      |
+%% --------------------------------------------------------------
+
 \input{src/acknowledgments.tex}
+
+%% --------------------------------------------------------------
+%% |                          Copyright                         |
+%% --------------------------------------------------------------
 
 \conditionalClearPage
 \input{src/copyright.tex}
+
+%% --------------------------------------------------------------
+%% |                          Abstracts                         |
+%% --------------------------------------------------------------
 
 \conditionalClearPage
 \input{src/abstract_en.tex}
@@ -47,7 +66,13 @@
 
 ~\vfill{}
 
+%% --------------------------------------------------------------
+%% |                        Abbreviations                       |
+%% --------------------------------------------------------------
+
 \section*{Abbreviations}
+
+% this will print only the used abbreviations
 \input{src/abbreviations.tex}
 
 \vskip 2.5cm
