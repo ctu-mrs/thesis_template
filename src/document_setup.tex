@@ -1,0 +1,229 @@
+%!TEX root = ../main.tex
+
+%% | ----------------------- page setup ----------------------- |
+
+% select the page format based on the print / !print version
+\pdfoutput=1
+\ifdefined\printversion
+  \documentclass[a4paper,11pt,twoside,openright]{book}
+\else
+  \documentclass[a4paper,11pt,oneside]{book}
+\fi
+
+% when !print, then no white pages
+\newcommand{\conditionalClearPage}{
+  \ifdefined\printversion
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+}
+
+% print version has different margins to accommodate the spine of the book
+\ifdefined\printversion
+  \usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
+\else
+  \usepackage[a4paper,margin=3.2cm,inner=2.7cm,outer=2.7cm]{geometry}
+\fi
+
+%% | ----------------- commonly used packages ----------------- |
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{amsmath,amsfonts,amssymb,bm}
+\usepackage{nicefrac}
+\usepackage{algorithm,algpseudocode}
+\usepackage[title,titletoc]{appendix}
+\usepackage{latexsym}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{fancyhdr,lastpage}
+\usepackage{longtable}
+\usepackage{pifont}
+\usepackage{makeidx}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{epstopdf}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{relsize}
+\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage{isotope}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{subfig}
+\usepackage[export]{adjustbox}
+
+\hyphenation{}
+
+\usepackage[printonlyused]{acronym}
+
+%% | ------------ siunitx for units of measurements ----------- |
+
+\usepackage{siunitx}
+\DeclareSIUnit \parsec {pc}
+\DeclareSIUnit \electronvolt {eV}
+\DeclareSIUnit \pixel {px}
+\DeclareSIUnit \arcmin {arcmin}
+\DeclareSIUnit \erg {erg}
+\DeclareSIUnit \joul {J}
+
+%% | --------------- change formatting of lists --------------- |
+
+\usepackage{enumitem}
+\setlist{nosep}
+
+%% | -------------------- table of contents ------------------- |
+
+\usepackage[subfigure]{tocloft}
+
+\tocloftpagestyle{plain}
+
+%% | ----------------- formatting of a chapter ---------------- |
+
+\usepackage{titlesec}
+\titleformat{\chapter}[block]
+{\normalfont\huge\bfseries}{Chapter \thechapter\\\vspace{0.1em}\\}{1em}{\Huge}
+% {?}{before}{after}
+\titlespacing*{\chapter}{0pt}{-1em}{2em}
+
+%% | ------------------------ biblatex ------------------------ |
+
+\usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=ydnt,sortcites=true]{biblatex}
+
+% define the source file with bibliography
+\addbibresource{main.bib}
+
+\renewcommand*{\bibfont}{\Font}
+
+% add suffix "a" to publications containing the keyword "mine"
+% add suffix "c" to publications containing the keyword "mine" && "core"
+\DeclareFieldFormat{labelnumber}{%
+  \ifkeyword{mine}
+    {\ifkeyword{core}
+      {{\number\numexpr#1}c}%
+      {{\number\numexpr#1}a}%
+    }%
+    {#1}%
+}
+
+\DeclareCiteCommand{\tabcite}%[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+
+%%}
+
+%% | ---------------------- custom macros --------------------- |
+
+\newcommand{\strong}[1]{\textbf{#1}}
+\newcommand{\coord}[1]{\textbf{#1}}
+\newcommand{\norm}[1]{\left\lvert#1\right\rvert}
+\newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\add}[1]{{\color{green} {#1}}}
+\newcommand{\todo}[1]{{\color{red} TODO {#1}}}
+\newcommand{\updated}[1]{{\color{blue} {#1}}}
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\refalg}[1]{Alg.~\ref{#1}}
+\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}
+\newcommand{\plus}{\scalebox{0.8}[0.8]{$+$}}
+\newcommand{\figvspace}{\vspace{-1em}}
+
+%% | --------------- change listings and itemize -------------- |
+
+\lstset{breaklines=true,captionpos=b,frame=single,language=sh,float=h}
+\lstloadlanguages{sh,c}
+\def\lstlistingname{Listing}
+\def\lstlistlistingname{Listings}
+
+%% | -------------------- layout parameters ------------------- |
+
+% TODO what is this?
+\def\clinks{false}
+
+% no indent, free space between paragraphs
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+% offsets the head down
+\setlength{\headheight}{18pt}
+
+% foot line
+\renewcommand{\footrulewidth}{0.4pt}
+
+%% | -------------- define the 'full' page style -------------- |
+
+\fancypagestyle{full}{%
+
+  % clear the default layout
+  \fancyhead{}
+  \fancyfoot{}
+
+  % page header
+  \fancyhead[LO]{\leftmark}
+  \fancyhead[RE]{\rightmark}
+  \fancyhead[LE,RO]{\thepage/\pageref{LastPage}}
+
+  % page footer
+  \fancyfoot[L]{CTU in Prague}
+  \fancyfoot[R]{\Department}
+  \fancyfoot[C]{}
+
+}
+
+%% | -------------- define the 'plain' page style ------------- |
+
+\fancypagestyle{plain}{%
+
+  % clear the default layout
+  \fancyhead{}
+  \fancyfoot{}
+
+  % page header
+  \fancyhead[LE,RO]{\thepage}
+
+}
+
+%% | -------------- Adjust style of chapter names ------------- |
+
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+
+%% | -------- European layout, no extra space after '.' ------- |
+
+\frenchspacing
+
+%% | ----------- adjust the style of the first page ----------- |
+
+\makeatletter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                    \thispagestyle{full}% original style: plain
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\makeatother
+
+%% | -------------------------- todos ------------------------- |
+
+% without this it does not compile!
+\let\bibfont\small
+
+% what does this do?
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist

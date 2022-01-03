@@ -1,0 +1,192 @@
+% enable this to activate the version for PRINT
+% => asymmetric alternating left/right margins
+% \newcommand*{\printversion}{}%
+
+%% | ---------------- document meta information --------------- |
+
+\newcommand{\Author}{John Smith}
+\newcommand{\Department}{Department of Cybernetics}
+\newcommand{\Supervisor}{Ing. My Supervisor, Ph.D.}
+\newcommand{\SupervisorSpecialist}{Ing. My Specialist, Ph.D.}
+\newcommand{\Programme}{Insert My Study Programme Name}
+\newcommand{\Field}{Insert My Study Subprogramme Name}
+\newcommand{\Title}{My Thesis Title\\[0.5em]can Span Multiple Lines}
+\newcommand{\DocName}{Bachelor Thesis / Master Thesis / Doctoral Thesis}
+\newcommand{\Keywords}{Unmanned Aerial Vehicles, Automatic Control}
+\newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Automatické Řízení}
+\newcommand{\Year}{2021}
+\newcommand{\Month}{January}
+\newcommand{\Date}{\Month~\Year}
+\newcommand{\Location}{Prague}
+
+\input{src/document_setup.tex}
+
+\begin{document}
+
+\input{src/title}
+
+\pagestyle{plain}
+
+\conditionalClearPage
+
+\pagenumbering{roman}
+\input{src/acknowledgments.tex}
+
+\conditionalClearPage
+\input{src/copyright.tex}
+
+\conditionalClearPage
+\input{src/abstract_en.tex}
+
+\conditionalClearPage
+\input{src/abstrakt_cz.tex}
+
+\conditionalClearPage
+
+\begin{changemargin}{0.8cm}{0.8cm}
+
+~\vfill{}
+
+\section*{Abbreviations}
+\begin{acronym}
+  \acro{API}[API]{Application Programming Interface}
+  \acro{CTU}[CTU]{Czech Technical University}
+  \acro{DOF}[DOF]{degree-of-freedom}
+  \acro{FOV}[FOV]{Field of View}
+  \acro{GNSS}[GNSS]{Global Navigation Satellite System}
+  \acro{GPS}[GPS]{Global Positioning System}
+  \acro{IMU}[IMU]{Inertial Measurement Unit}
+  \acro{LKF}[LKF]{Linear Kalman Filter}
+  \acro{LTI}[LTI]{Linear time-invariant}
+  \acro{LiDAR}[LiDAR]{Light Detection and Ranging}
+  \acro{MAV}[MAV]{Micro Aerial Vehicle}
+  \acro{MPC}[MPC]{Model Predictive Control}
+  \acro{MRS}[MRS]{Multi-robot Systems Group}
+  \acro{ROS}[ROS]{Robot Operating System}
+  \acro{RTK}[RTK]{Real-time Kinematics}
+  \acro{SLAM}[SLAM]{Simultaneous Localization And Mapping}
+  \acro{UAV}[UAV]{Unmanned Aerial Vehicle}
+  \acro{UGV}[UGV]{Unmanned Ground Vehicle}
+  \acro{UKF}[UKF]{Unscented Kalman Filter}
+\end{acronym}
+
+\vskip 2.5cm
+
+\end{changemargin}
+
+\conditionalClearPage
+\tableofcontents
+
+\conditionalClearPage
+
+\pagestyle{full}
+
+%% --------------------------------------------------------------
+%% |                        introduction                        |
+%% --------------------------------------------------------------
+
+\chapter{Introduction}
+
+First, introduce the reader to the research topic.
+Start with the most general view and slowly converge to the particular field, subfield, and the challenges you face.
+You can cite others work here \cite{baca2020mrs}.
+
+\pagenumbering{arabic}
+
+\section{Related works}
+
+This section should contain related state-of-the-art works and their relation to the author's work.
+We usually cite the original works like this \cite{benallegue2008high}.
+You can also cite multiple papers at once like this \cite{baca2016embedded, baca2020mrs}.
+
+\section{Contributions}
+
+This section should briefly describe the author's contributions to his field of research.
+
+%% --------------------------------------------------------------
+%% |                How to write thesis in LaTeX                |
+%% --------------------------------------------------------------
+
+\chapter{How to write thesis in LaTeX}
+
+\section{Mathematical notation with LaTeX}
+
+\section{Abbreviations with Acronym}
+
+Abbreviations are handled by the \emph{acronym} package.
+Example sentence with abbreviations: ``\ac{UAV} is a flying vehicle that commonly uses \ac{LiDAR} and \ac{GPS} receiver''.
+Please, read the documentation (\url{http://mirrors.ctan.org/macros/latex/contrib/acronym/acronym.pdf}).
+
+\section{Units of measurements with Siunitx}
+
+Typesetting units has never been easier with the Siunitx package.
+Acceleration is measure in \si{\meter\per\second\squared}.
+Gravity accelerates objects at a rate $\approx \SI{9.81}{\meter\per\second\squared}$ near the sea level.
+You can define your own units if you want.
+
+\section{2D Diagrams with Tikz}
+
+\section{Data plots with PGFPlots}
+
+\begin{itemize}
+  \item Documentation and manual: \url{https://ctan.org/pkg/pgfplots}
+  \item Compile the plots individually and then include the pdfs, because it can take a long time.
+  \item Example located in \texttt{fig/plots/example\_plot}, see \reffig{fig:pgfplots}.
+  \item You could include the latex file directly, however, it will take longer time to compile and platforms such as Overleaf can have a problem with that.
+\end{itemize}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{./fig/plots/example_plot/hypotheses.pdf}
+  \caption{Example of a 2D plot using \emph{PGFPlots}.}
+  \label{fig:pgfplots}
+\end{figure}
+
+\section{3D Plots with Sketch}
+
+See the example in \reffig{fig:coordinate_systems}.
+
+\begin{itemize}
+  \item Documentation and manual: \url{http://www.frontiernet.net/~eugene.ressler/}
+  \item Cross-compilation from \emph{Sketch} to \emph{pdf} using the \texttt{fig/sketch/compile\_sketch.sh} script.
+\end{itemize}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{./fig/sketch/coordinate_frames.pdf}
+  \caption{Depiction of the used coordinate systems. The image was drawn using \emph{Sketch}.}
+  \label{fig:coordinate_systems}
+\end{figure}
+
+\section{Image collages with Subfig}
+
+\section{Citations with Biblatex}
+
+\section{Image overlays with Tikz}
+
+%% --------------------------------------------------------------
+%% |                         Conclusion                         |
+%% --------------------------------------------------------------
+
+\chapter{Conclusion\label{chap:conclusion}}
+
+Briefly summarize the achieved results.
+
+%% --------------------------------------------------------------
+%% |                         Appendices                         |
+%% --------------------------------------------------------------
+
+\appendix
+\renewcommand\chaptername{Appendix}
+
+\chapter{References}
+
+\printbibliography[heading=none,title={}]
+
+% \appendix
+\renewcommand{\thechapter}{B}
+\renewcommand\chaptername{Appendix B}
+
+\chapter{Appendix B}
+
+\end{document}
