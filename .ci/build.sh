@@ -3,7 +3,7 @@
 set -e
 
 sudo apt -y update
-sudo apt -y install texlive-latex-base texlive-latex-extra poppler-utils imagemagick
+sudo apt-get -y install texlive texlive-latex-extra texlive-lang-czechslovak texlive-science texlive-pstricks latexmk texmaker texlive-font-utils texlive-fonts-extra texlive-bibtex-extra biber okular pdf-presenter-console dvipng sketch
 
 pdflatex -interaction=nonstopmode main.tex
 pdftoppm -jpeg main.pdf thumbnail.jpg
