@@ -2,8 +2,8 @@
 
 ## Click the thumbnail to download the pdf
 
-[![Template PDF](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/thumbnail.jpg)](https://github.com/ctu-mrs/thesis_temaplte/raw/gh-pages/thesis_template.pdf)
+### Dissertation
+
+[![Template PDF](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/dissertation_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_temaplte/raw/gh-pages/dissertation_thesis_template.pdf)
 
 ## Misc
-
-
