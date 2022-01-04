@@ -1,0 +1,1 @@
+../common_resources/IEEEtran.bst
