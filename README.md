@@ -4,15 +4,15 @@
 
 ### Bachelor
 
-[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/bachelor_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/bachelor_thesis_template.pdf)
+[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/master/.fig/bachelor_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/master/bachelor_thesis_template.pdf)
 
 ### Master
 
-[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/master_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/master_thesis_template.pdf)
+[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/master/.fig/master_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/master/master_thesis_template.pdf)
 
 ### Dissertation
 
-[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/phd_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/phd_thesis_template.pdf)
+[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/master/.fig/phd_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/master/phd_thesis_template.pdf)
 
 ## Build using supplied Makefile
 
