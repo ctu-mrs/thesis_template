@@ -1,10 +1,5 @@
-build/
 *.swp
 *.swo
-
-build/
-presentation/build
-poster/build
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
