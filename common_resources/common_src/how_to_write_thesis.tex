@@ -4,6 +4,17 @@
 
 \section{Mathematical notation with LaTeX}
 
+Use bold to visually distinguish vectors and matrices ($\mathbf{x}$, $\mathbf{A}$) and scalars ($k$, $N$).
+Mathematical equations should be numbered and should be part of a sentence.
+For example, the following equation is a discrete LTI system update
+\begin{equation}
+  \mathbf{x}_{\left[k+1\right]} = \mathbf{A}\mathbf{x}_k + \mathbf{B}\mathbf{u}_k,
+  \label{eq:lti_system}
+\end{equation}
+where $\mathbf{x}_k \in \mathbb{R}^m$ is the state vector at the sample $k$, $\mathbf{u}_k \in \mathbb{R}^n$ is the input vector, $\mathbf{A} \in \mathbb{R}^{m \times m}$ is the main system matrix, and $\mathbf{B} \in \mathbb{R}^{m \times n}$ is the system input matrix.
+Proper punctuation should be used after \eqref{eq:lti_system}, as if it were a normal object in the sentence.
+Do not put any empty lines around the equation, that would create a new paragraph mid-sentence.
+
 \section{Abbreviations with Acronym}
 
 Abbreviations are handled by the \emph{acronym} package.
