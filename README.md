@@ -12,8 +12,13 @@
 
 ### Dissertation
 
-[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/dissertation_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/dissertation_thesis_template.pdf)
+[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/phd_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/gh-pages/phd_thesis_template.pdf)
 
-## Misc
+## Building using supplied Makefile
 
-TODO
+```bash
+make
+make bib
+make
+make
+```

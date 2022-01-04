@@ -10,11 +10,17 @@ sudo apt-get -y install texlive texlive-latex-extra texlive-lang-czechslovak tex
 # needed for the CI
 sudo apt -y install poppler-utils imagemagick
 
-mkdir -p output
+PHD_DIR=`cd phd_thesis && pwd`
+BACHELOR_DIR=`cd bachelor_thesis && pwd`
+MASTER_DIR=`cd master_thesis && pwd`
 
-pdflatex -interaction=nonstopmode dissertation.tex
-pdftoppm -jpeg dissertation.pdf dissertation_thumbnail.jpg
-montage *.jpg -mode Concatenate -tile 3x1 dissertation_montage.jpg
-convert dissertation_montage-0.jpg -resize 1280 -quality 80 dissertation_montage-0.jpg
-mv dissertation.pdf output/dissertation_thesis_template.pdf
-mv dissertation_montage-0.jpg output/dissertation_thumbnail.jpg
+mkdir -p output
+OUTPUT_DIR=`cd output && pwd`
+
+cd $PHD_DIR
+make && make bib && make && make
+pdftoppm -jpeg main.pdf phd_thumbnail.jpg
+montage *.jpg -mode Concatenate -tile 3x1 phd_montage.jpg
+convert phd_montage-0.jpg -resize 1280 -quality 80 phd_montage-0.jpg
+mv phd.pdf $OUTPUT_DIR/phd_thesis_template.pdf
+mv phd_montage-0.jpg $OUTPUT_DIR/phd_thumbnail.jpg
