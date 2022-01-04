@@ -9,8 +9,8 @@
 \newcommand{\Department}{Department of Cybernetics}
 \newcommand{\Supervisor}{Ing. My Supervisor, Ph.D.}
 \newcommand{\SupervisorSpecialist}{Ing. My Specialist, Ph.D.}
-\newcommand{\Programme}{Electrical Engineering and Information Technology}
-\newcommand{\Field}{Artificial Intelligence and Biocybernetics}
+\newcommand{\Programme}{Insert My Study Programme Name}
+\newcommand{\Field}{Insert My Study Subprogramme Name}
 \newcommand{\Title}{My Thesis Title\\[0.5em]can Span Multiple Lines}
 \newcommand{\DocName}{Doctoral Thesis}
 \newcommand{\Keywords}{Unmanned Aerial Vehicles, Automatic Control}
@@ -92,9 +92,8 @@
 
 \conditionalClearPage
 
-% set up the full page style with normal page numbering
+% set up the full page style
 \pagestyle{full}
-\pagenumbering{arabic}
 
 %% --------------------------------------------------------------
 %% |                        introduction                        |
@@ -121,8 +120,6 @@
 \appendix
 \renewcommand\chaptername{Appendix}
 
-%% | ----------------- Appendix A - References ---------------- |
-
 \chapter{References}
 
 References to the author's work are listed first, followed by other references cited within this work.
@@ -145,8 +142,7 @@ The citation counts were gathered on {\color{red} \texttt{insert date here}}.
 
 \printbibliography[notkeyword=mine,heading=none,title={}]
 
-%% | ----------------------- Appendix B ----------------------- |
-
+% \appendix
 \renewcommand{\thechapter}{B}
 \renewcommand\chaptername{Appendix B}
 
