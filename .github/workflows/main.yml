@@ -38,3 +38,12 @@ jobs:
           publish_dir: ./output
           allow_empty_commit: true
           force_orphan: true
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_branch: master
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./master_output
+          allow_empty_commit: true
+          force_orphan: true

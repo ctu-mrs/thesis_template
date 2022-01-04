@@ -2,6 +2,17 @@
 
 set -e
 
+MY_PATH=$( pwd )
+
+replace_links_with_files() {
+
+  LOCATION=$( cd "$1" && pwd)
+
+  for f in $(find $LOCATION -maxdepth 1 -type l); do
+    cp -r --remove-destination $(readlink -e $f) $f
+  done
+}
+
 sudo apt -y update
 
 # general stuff for latex
@@ -15,7 +26,10 @@ BACHELOR_DIR=`cd bachelor_thesis && pwd`
 MASTER_DIR=`cd master_thesis && pwd`
 
 mkdir -p output
+mkdir -p master_output
+
 OUTPUT_DIR=`cd output && pwd`
+MASTER_OUTPUT_DIR=`cd master_output && pwd`
 
 cd $PHD_DIR
 make && make bib && make && make
@@ -40,3 +54,18 @@ montage *.jpg -mode Concatenate -tile 3x1 master_montage.jpg
 convert master_montage-0.jpg -resize 1280 -quality 80 master_montage-0.jpg
 mv main.pdf $OUTPUT_DIR/master_thesis_template.pdf
 mv master_montage-0.jpg $OUTPUT_DIR/master_thesis_thumbnail.jpg
+
+## --------------------------------------------------------------
+## |           copy stuff to the master output folder           |
+## --------------------------------------------------------------
+
+cp $MY_PATH
+
+cp README.md $MASTER_OUTPUT_DIR/
+cp -r bachelor_thesis $MASTER_OUTPUT_DIR/
+cp -r master_thesis $MASTER_OUTPUT_DIR/
+cp -r phd_thesis $MASTER_OUTPUT_DIR/
+
+replace_links_with_files $MASTER_OUTPUT_DIR/bachelor_thesis
+replace_links_with_files $MASTER_OUTPUT_DIR/master_thesis
+replace_links_with_files $MASTER_OUTPUT_DIR/phd_thesis
