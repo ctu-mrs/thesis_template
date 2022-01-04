@@ -3,7 +3,7 @@
 ## Editing the templates
 
 **Please read this!!**
-Please, **edit the files in the devel branch**if you wish to edit the templates.
+Please, **edit the files in the devel branch** if you wish to edit the templates.
 The **devel** branch contains a more general structure with symlinks, which is not ideal for students.
 The CI job on Github takes care of repacking everything nicely into what you see in the **master** branch.
 The job takes approx. Five minutes to run after you push to **devel**, so be patient.
