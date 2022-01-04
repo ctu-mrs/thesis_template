@@ -24,3 +24,19 @@ montage *.jpg -mode Concatenate -tile 3x1 phd_montage.jpg
 convert phd_montage-0.jpg -resize 1280 -quality 80 phd_montage-0.jpg
 mv main.pdf $OUTPUT_DIR/phd_thesis_template.pdf
 mv phd_montage-0.jpg $OUTPUT_DIR/phd_thesis_thumbnail.jpg
+
+cd $BACHELOR_DIR
+make && make bib && make && make
+pdftoppm -jpeg main.pdf bachelor_thumbnail.jpg
+montage *.jpg -mode Concatenate -tile 3x1 bachelor_montage.jpg
+convert bachelor_montage-0.jpg -resize 1280 -quality 80 bachelor_montage-0.jpg
+mv main.pdf $OUTPUT_DIR/bachelor_thesis_template.pdf
+mv bachelor_montage-0.jpg $OUTPUT_DIR/bachelor_thesis_thumbnail.jpg
+
+cd $MASTER_DIR
+make && make bib && make && make
+pdftoppm -jpeg main.pdf master_thumbnail.jpg
+montage *.jpg -mode Concatenate -tile 3x1 master_montage.jpg
+convert master_montage-0.jpg -resize 1280 -quality 80 master_montage-0.jpg
+mv main.pdf $OUTPUT_DIR/master_thesis_template.pdf
+mv master_montage-0.jpg $OUTPUT_DIR/master_thesis_thumbnail.jpg
