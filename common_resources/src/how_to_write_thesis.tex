@@ -1,3 +1,5 @@
+%!TEX root = ../main.tex
+
 \chapter{How to write thesis in LaTeX\label{chap:how_to}}
 
 \section{Mathematical notation with LaTeX}
@@ -10,8 +12,9 @@ For example, the following equation is a discrete LTI system update
   \label{eq:lti_system}
 \end{equation}
 where $\mathbf{x}_k \in \mathbb{R}^m$ is the state vector at the sample $k$, $\mathbf{u}_k \in \mathbb{R}^n$ is the input vector, $\mathbf{A} \in \mathbb{R}^{m \times m}$ is the main system matrix, and $\mathbf{B} \in \mathbb{R}^{m \times n}$ is the system input matrix.
-Proper punctuation should be used after \eqref{eq:lti_system}, as if it were a normal object in the sentence.
-Do not put any empty lines around the equation, that would create a new paragraph mid-sentence.
+Proper punctuation should be used after \eqref{eq:lti_system}, as if it were an ordinary object in the sentence.
+Do not put any empty lines around the equation.
+That would create a new paragraph mid-sentence.
 
 \section{Abbreviations with Acronym}
 
@@ -21,10 +24,10 @@ Please, read the documentation (\url{http://mirrors.ctan.org/macros/latex/contri
 
 \section{Units of measurements with Siunitx}
 
-Typesetting units has never been easier with the Siunitx package.
+Typesetting of units has never been more accessible with the Siunitx package.
 Acceleration is measure in \si{\meter\per\second\squared}.
 Gravity accelerates objects at a rate $\approx \SI{9.81}{\meter\per\second\squared}$ near the sea level.
-You can define your own units if you want.
+You can define your units if you want.
 
 \section{2D Diagrams with Tikz}
 
@@ -33,7 +36,7 @@ Check the documentation and examples: \url{https://www.overleaf.com/learn/latex/
 The benefit of using \emph{Tikz}, instead of some other third-party drawing program, are:
 \begin{itemize}
   \item fonts are the same as in LaTeX,
-  \item you can type set math in LaTeX,
+  \item you can typeset math in LaTeX,
   \item you can use references to other parts of your document,
   \item you can version the image in git,
   \item the images are easily adjustable while editing your document.
@@ -57,9 +60,9 @@ Check \reffig{fig:pgfplots} for example.
 The plot parameters can be versioned and easily adjusted by editing the plot definition file.
 \begin{itemize}
   \item Documentation and manual: \url{https://ctan.org/pkg/pgfplots}
-  \item Compile the plots individually and then include the pdfs, because it can take a long time.
+  \item Compile the plots individually and then include the pdfs because it can take longer.
   \item Example located in \texttt{fig/plots/example\_plot}, see \reffig{fig:pgfplots}.
-  \item You could include the latex file directly, however, it will take longer time to compile and platforms such as Overleaf can have a problem with that.
+  \item You could include the latex file directly. However, it will take longer to compile, and platforms such as Overleaf can have a problem with that.
 \end{itemize}
 
 \begin{figure}[!h]
@@ -71,9 +74,9 @@ The plot parameters can be versioned and easily adjusted by editing the plot def
 
 \section{3D Plots with Sketch}
 
-\emph{Sketch} is a tool for defining a 3D scene using a simple descriptive language.
+\emph{Sketch} is a tool for defining a 3D scene using simple descriptive language.
 The 3D scene is then converted to \emph{Tikz}, which is later compiled to pdf.
-The benefits of using \emph{Sketch} are similar to using \emph{Tikz}: LaTeX fonts, versioning using git and cleanness of the result.
+The benefits of using \emph{Sketch} are similar to using \emph{Tikz}: LaTeX fonts, versioning using git, and cleanness of the result.
 See the example image in \reffig{fig:coordinate_systems}.
 \begin{itemize}
   \item Documentation and manual: \url{http://www.frontiernet.net/~eugene.ressler/}
@@ -110,7 +113,7 @@ Check the \reffig{fig:uavs} for example.
 \section{Citations with Biblatex}
 
 \emph{Biblatex} is probably the most powerful citation package for LaTeX.
-It consumes the standard \texttt{.bib} file, however, it can sort and filter the citations using the \texttt{keywords} tag.
+It consumes the standard \texttt{.bib} file. However, it can sort and filter the citations using the \texttt{keywords} tag.
 Citing references is done using the \texttt{cite} command, e.g., \cite{baca2021mrs}.
 You can also define some nice citation boxes, such as these:
 \fullciteinbox{baca2021mrs}{}
@@ -128,7 +131,7 @@ Example can be seen in \reffig{fig:tikz_overlay}.
 
   \input{fig/tikz/overlay_example.tex}
 
-  \caption{Example of using Tikz for image overlays. (a) shows a final product, (b) shows a grid, that is useful for nailing down the coordinates.}
+  \caption{Example of using Tikz for image overlays. (a) shows a final product, (b) shows a grid useful for nailing down the coordinates.}
   \label{fig:tikz_overlay}
 
 \end{figure}
