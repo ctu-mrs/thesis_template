@@ -1,5 +1,3 @@
-%!TEX root = ../main.tex
-
 \chapter{How to write thesis in LaTeX\label{chap:how_to}}
 
 \section{Mathematical notation with LaTeX}
@@ -30,8 +28,33 @@ You can define your own units if you want.
 
 \section{2D Diagrams with Tikz}
 
+\emph{Tikz} is a powerful tool for drawing 2D (and 3D) shapes and diagrams.
+Check the documentation and examples: \url{https://www.overleaf.com/learn/latex/TikZ_package}.
+The benefit of using \emph{Tikz}, instead of some other third-party drawing program, are:
+\begin{itemize}
+  \item fonts are the same as in LaTeX,
+  \item you can type set math in LaTeX,
+  \item you can use references to other parts of your document,
+  \item you can version the image in git,
+  \item the images are easily adjustable while editing your document.
+\end{itemize}
+Check \reffig{fig:pgfplots} for example.
+
+\begin{figure}[!h]
+  \centering
+
+  \begin{adjustbox}{max totalsize={0.8\textwidth}{0.90\textheight}, center}
+    \input{../fig/tikz/example_diagram.tex}
+  \end{adjustbox}
+
+  \caption{Example of a 2D diagram using tikz \emph{PGFPlots}.}
+  \label{fig:pgfplots}
+\end{figure}
+
 \section{Data plots with PGFPlots}
 
+\emph{PGFPlots} produces nice 2D and 3D data plots from data stored in CSV.
+The plot parameters can be versioned and easily adjusted by editing the plot definition file.
 \begin{itemize}
   \item Documentation and manual: \url{https://ctan.org/pkg/pgfplots}
   \item Compile the plots individually and then include the pdfs, because it can take a long time.
@@ -48,8 +71,10 @@ You can define your own units if you want.
 
 \section{3D Plots with Sketch}
 
-See the example in \reffig{fig:coordinate_systems}.
-
+\emph{Sketch} is a tool for defining a 3D scene using a simple descriptive language.
+The 3D scene is then converted to \emph{Tikz}, which is later compiled to pdf.
+The benefits of using \emph{Sketch} are similar to using \emph{Tikz}: LaTeX fonts, versioning using git and cleanness of the result.
+See the example image in \reffig{fig:coordinate_systems}.
 \begin{itemize}
   \item Documentation and manual: \url{http://www.frontiernet.net/~eugene.ressler/}
   \item Cross-compilation from \emph{Sketch} to \emph{pdf} using the \texttt{fig/sketch/compile\_sketch.sh} script.
@@ -64,6 +89,46 @@ See the example in \reffig{fig:coordinate_systems}.
 
 \section{Image collages with Subfig}
 
+We recommend using the \emph{subfig} packages, which provides the \emph{subfloat} command.
+It is more versatile than the simpler \emph{subcaption} package.
+Check the \reffig{fig:uavs} for example.
+
+\begin{figure}[!h]
+  \centering
+  \subfloat[A UAV, the T650 model.] {
+    \includegraphics[width=0.48\textwidth]{./fig/photos/uav1.jpg}
+    \label{fig:uavs_1}
+  }
+  \subfloat[Another UAV, again, T650 model.] {
+    \includegraphics[width=0.48\textwidth]{./fig/photos/uav2.jpg}
+    \label{fig:uavs_2}
+  }
+  \caption{The caption should mention both, the \reffig{fig:uavs_1} and the \reffig{fig:uavs_2}. You can just refer to them as (a) and (b), but beware, you need to keep it correct as you edit.}
+  \label{fig:uavs}
+\end{figure}
+
 \section{Citations with Biblatex}
 
+\emph{Biblatex} is probably the most powerful citation package for LaTeX.
+It consumes the standard \texttt{.bib} file, however, it can sort and filter the citations using the \texttt{keywords} tag.
+Citing references is done using the \texttt{cite} command, e.g., \cite{baca2021mrs}.
+You can also define some nice citation boxes, such as these:
+\fullciteinbox{baca2021mrs}{}
+\fullciteinbox{baca2021mrs}{Some meaningful description comes here:}
+
 \section{Image overlays with Tikz}
+
+\emph{Tikz} is very useful to create custom image overlays.
+The overlay can be set such that the image is spanned by Cartesian coordinates $\left(x, y\right) \in \left[0, 1\right]^2$
+Example can be seen in \reffig{fig:tikz_overlay}.
+
+\begin{figure}[!h]
+
+  \centering
+
+  \input{fig/tikz/overlay_example.tex}
+
+  \caption{Example of using Tikz for image overlays. (a) shows a final product, (b) shows a grid, that is useful for nailing down the coordinates.}
+  \label{fig:tikz_overlay}
+
+\end{figure}

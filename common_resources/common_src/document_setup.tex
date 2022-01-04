@@ -67,6 +67,16 @@
 
 \usepackage[printonlyused]{acronym}
 
+%% | -------------------------- tikz -------------------------- |
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy,shapes,shapes.geometric,shapes.multipart,fit,patterns,fadings}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
 %% | ------------ siunitx for units of measurements ----------- |
 
 \usepackage{siunitx}
@@ -125,7 +135,39 @@
   {\usebibmacro{cite:dump}%
    \usebibmacro{postnote}}
 
-%%}
+% define fullciteinbox command
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinbox}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%\vspace{3em}%
+%\raisebox{3em}[3em][3em]{%
+% \vspace{-0.2em}
+\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{0.07\linewidth}%
+\raggedright%
+\cite{#1}%
+\end{minipage}%
+\begin{minipage}[t]{0.93\linewidth}%
+\fullcite{#1}%
+\end{minipage}%
+\end{tcolorbox}%
+%}%
+\vspace{-0.3em}
+}%
 
 %% | ---------------------- custom macros --------------------- |
 
