@@ -1,1 +1,1 @@
-../common_resources/makefiles/Makefile
+../common_resources/Makefile

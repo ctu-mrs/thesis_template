@@ -16,15 +16,12 @@
 
 ## Build using supplied Makefile
 
-The first ever build requires running the following sequence withing the theses's folder:
+Build the pdf by running
 ```bash
 make
-make bib
-make
-make
 ```
-Any following build require to run `make bib` if you have updated the `.bib` file.
-Run `make` after that the update the main pdf.
+in the thesis's folder.
+The output will appear in the `build` subfolder.
 
 ## Switching between print and screen versions
 
