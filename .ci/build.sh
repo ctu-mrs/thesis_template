@@ -9,9 +9,11 @@ trap 'echo "$0: \"${last_command}\" command failed with exit code $?"' ERR
 REPO_ROOT=`dirname "$0"`
 REPO_ROOT=`( cd "$REPO_ROOT/.." && pwd )`
 
-sudo apt -y update
-sudo apt-get -y install texlive texlive-latex-extra texlive-lang-czechslovak texlive-science texlive-pstricks latexmk texmaker texlive-font-utils texlive-fonts-extra texlive-bibtex-extra biber okular pdf-presenter-console dvipng sketch
-sudo apt -y install poppler-utils imagemagick
+if [ ! -z "$GITHUB_CI" ]; then
+  sudo apt -y update
+  sudo apt-get -y install texlive texlive-latex-extra texlive-lang-czechslovak texlive-science texlive-pstricks latexmk texmaker texlive-font-utils texlive-fonts-extra texlive-bibtex-extra biber okular pdf-presenter-console dvipng sketch
+  sudo apt -y install poppler-utils imagemagick
+fi
 
 BACHELOR_DIR=$REPO_ROOT/bachelor_thesis
 MASTER_DIR=$REPO_ROOT/master_thesis
