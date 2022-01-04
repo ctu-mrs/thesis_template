@@ -24,6 +24,8 @@ jobs:
 
   docs:
     runs-on: ubuntu-20.04
+    env:
+      GITHUB_CI: true
     steps:
 
       - uses: actions/checkout@v2
