@@ -8,7 +8,7 @@ The **devel** branch contains a more general structure with symlinks, which is n
 The CI job on Github takes care of repacking everything nicely into what you see in the **master** branch.
 The job takes approx. Five minutes to run after you push to **devel**, so be patient.
 **Any commits to the master branch will get lost**.
-See the [https://github.com/ctu-mrs/thesis_template/blob/devel/.ci/build.sh]([devel]:.ci/build.sh) for more details.
+See the [devel:.ci/build.sh](https://github.com/ctu-mrs/thesis_template/blob/devel/.ci/build.sh) for more details.
 
 ### Bachelor
 
