@@ -2,7 +2,7 @@
 
 %% | ----------------------- page setup ----------------------- |
 
-% select the page format based on the print / !print version
+% define documentclass based on the print/screen version of the document
 \pdfoutput=1
 \ifdefined\printversion
   \documentclass[a4paper,11pt,twoside,openright]{book}
@@ -10,7 +10,7 @@
   \documentclass[a4paper,11pt,oneside]{book}
 \fi
 
-% when !print, then no white pages
+% define how "clearpage" works with the print/screen version of the document
 \newcommand{\conditionalClearPage}{
   \ifdefined\printversion
     \cleardoublepage
@@ -65,7 +65,13 @@
 
 \hyphenation{}
 
+%% | ---------------------- abbreviations --------------------- |
+
 \usepackage[printonlyused]{acronym}
+
+% use to change margins around abbreviations block
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
 
 %% | -------------------------- tikz -------------------------- |
 
@@ -149,9 +155,6 @@
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-%\vspace{3em}%
-%\raisebox{3em}[3em][3em]{%
-% \vspace{-0.2em}
 \begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
 \ifx&#2&
 \else
@@ -169,6 +172,10 @@
 \vspace{-0.3em}
 }%
 
+% change the bibliography font style
+% does not compile without this
+\let\bibfont\small
+
 %% | ---------------------- custom macros --------------------- |
 
 \newcommand{\strong}[1]{\textbf{#1}}
@@ -179,15 +186,18 @@
 \newcommand{\add}[1]{{\color{green} {#1}}}
 \newcommand{\todo}[1]{{\color{red} TODO {#1}}}
 \newcommand{\updated}[1]{{\color{blue} {#1}}}
-\newcommand{\reffig}[1]{Fig.~\ref{#1}}
-\newcommand{\refalg}[1]{Alg.~\ref{#1}}
-\newcommand{\refsec}[1]{Sec.~\ref{#1}}
-\newcommand{\reftab}[1]{Table~\ref{#1}}
 \newcommand{\real}{\mathbb{R}}
 \newcommand{\red}[1]{{\color{red} #1}}
 \newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}
 \newcommand{\plus}{\scalebox{0.8}[0.8]{$+$}}
 \newcommand{\figvspace}{\vspace{-1em}}
+
+% referencing
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\refalg}[1]{Alg.~\ref{#1}}
+\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\refeq}[1]{\eqref{#1}}
 
 %% | --------------- change listings and itemize -------------- |
 
@@ -197,9 +207,6 @@
 \def\lstlistlistingname{Listings}
 
 %% | -------------------- layout parameters ------------------- |
-
-% TODO what is this?
-\def\clinks{false}
 
 % no indent, free space between paragraphs
 \setlength{\parindent}{1cm}
@@ -228,7 +235,6 @@
   \fancyfoot[L]{CTU in Prague}
   \fancyfoot[R]{\Department}
   \fancyfoot[C]{}
-
 }
 
 %% | -------------- define the 'plain' page style ------------- |
@@ -241,7 +247,6 @@
 
   % page header
   \fancyhead[LE,RO]{\thepage}
-
 }
 
 %% | -------------- Adjust style of chapter names ------------- |
@@ -261,12 +266,3 @@
                     \@afterindentfalse
                     \secdef\@chapter\@schapter}
 \makeatother
-
-%% | -------------------------- todos ------------------------- |
-
-% without this it does not compile!
-\let\bibfont\small
-
-% what does this do?
-\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
-\let\endchangemargin=\endlist

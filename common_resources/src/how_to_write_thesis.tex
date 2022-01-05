@@ -2,6 +2,12 @@
 
 \chapter{How to write thesis in LaTeX\label{chap:how_to}}
 
+\section{Versioning with git}
+
+Write the LaTeX in such a way that it could be versioned by git, which will help when collaborating with other people.
+This means writing \textbf{one sentence per line}.
+Even when you use third-party platforms, such as the OverLeaf, you can still share the repository through Git.
+
 \section{Mathematical notation with LaTeX}
 
 Use bold to visually distinguish vectors and matrices ($\mathbf{x}$, $\mathbf{A}$) and scalars ($k$, $N$).
@@ -12,9 +18,15 @@ For example, the following equation is a discrete LTI system update
   \label{eq:lti_system}
 \end{equation}
 where $\mathbf{x}_k \in \mathbb{R}^m$ is the state vector at the sample $k$, $\mathbf{u}_k \in \mathbb{R}^n$ is the input vector, $\mathbf{A} \in \mathbb{R}^{m \times m}$ is the main system matrix, and $\mathbf{B} \in \mathbb{R}^{m \times n}$ is the system input matrix.
-Proper punctuation should be used after \eqref{eq:lti_system}, as if it were an ordinary object in the sentence.
+Proper punctuation should be used after \refeq{eq:lti_system}, as if it were an ordinary object in the sentence.
 Do not put any empty lines around the equation.
 That would create a new paragraph mid-sentence.
+
+\section{Using footnotes}
+
+Do not be afraid to use footnotes for additional information, such as http links\footnote{This repository: \url{https://github.com/ctu-mrs/thesis_template}.}.
+We use footnote links whenever we want to \emph{point} to a website, rather then to cite it as a source.
+Like with everything, do not overdo it.
 
 \section{Abbreviations with Acronym}
 
