@@ -194,17 +194,45 @@
 
 % referencing
 \newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\reflst}[1]{Lst.~\ref{#1}}
 \newcommand{\refalg}[1]{Alg.~\ref{#1}}
 \newcommand{\refsec}[1]{Sec.~\ref{#1}}
 \newcommand{\reftab}[1]{Table~\ref{#1}}
 \newcommand{\refeq}[1]{\eqref{#1}}
 
-%% | --------------- change listings and itemize -------------- |
+%% | ----------------- listings - showing code ---------------- |
 
-\lstset{breaklines=true,captionpos=b,frame=single,language=sh,float=h}
-\lstloadlanguages{sh,c}
-\def\lstlistingname{Listing}
-\def\lstlistlistingname{Listings}
+\usepackage{listings}     
+\usepackage{lstautogobble}  % Fix relative indenting
+\usepackage{color}          % Code coloring
+\usepackage{zi4}            % Nice font
+
+\definecolor{bluekeywords}{rgb}{0.13, 0.13, 1}
+\definecolor{greencomments}{rgb}{0, 0.5, 0}
+\definecolor{redstrings}{rgb}{0.9, 0, 0}
+\definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
+
+\usepackage{listings}
+\lstset{
+    autogobble,
+    columns=fullflexible,
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    showstringspaces=false,
+    breakatwhitespace=true,
+    escapeinside={(*@}{@*)},
+    commentstyle=\color{greencomments},
+    keywordstyle=\color{bluekeywords},
+    stringstyle=\color{redstrings},
+    numberstyle=\color{graynumbers},
+    basicstyle=\ttfamily\footnotesize,
+    frame=l,
+    framesep=12pt,
+    xleftmargin=12pt,
+    tabsize=4,
+    captionpos=b
+}
 
 %% | -------------------- layout parameters ------------------- |
 

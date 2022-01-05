@@ -28,11 +28,32 @@ Do not be afraid to use footnotes for additional information, such as http links
 We use footnote links whenever we want to \emph{point} to a website, rather then to cite it as a source.
 Like with everything, do not overdo it.
 
+\section{Referencing to document elements}
+
+LaTeX allows you to dynamically reference to parts of the documents, such as
+\begin{itemize}
+  \item figures: \reffig{fig:uavs}, Figure\,\ref{fig:uavs},
+  \item equations: \refeq{eq:lti_system},
+  \item code: \reflst{lst:references},
+  \item and any other object that can contain \texttt{label}.
+\end{itemize}
+
+Check the section in the \texttt{document\_setup.tex} that contains useful macros for unifying the references:
+
+\begin{lstlisting}[caption={LaTeX macros for referencing to document elements.},label={lst:references}]
+  \newcommand{\reffig}[1]{Fig.~\ref{#1}}
+  \newcommand{\reflst}[1]{Lst.~\ref{#1}}
+  \newcommand{\refalg}[1]{Alg.~\ref{#1}}
+  \newcommand{\refsec}[1]{Sec.~\ref{#1}}
+  \newcommand{\reftab}[1]{Table~\ref{#1}}
+  \newcommand{\refeq}[1]{\eqref{#1}}
+\end{lstlisting}
+
 \section{Abbreviations with Acronym}
 
 Abbreviations are handled by the \emph{acronym} package.
 Example sentence with abbreviations: ``\ac{UAV} is a flying vehicle that commonly uses \ac{LiDAR} and \ac{GPS} receiver''.
-Please, read the documentation (\url{http://mirrors.ctan.org/macros/latex/contrib/acronym/acronym.pdf}).
+Please, read the documentation\footnote{Acronym package: \url{http://mirrors.ctan.org/macros/latex/contrib/acronym/acronym.pdf}}.
 
 \section{Units of measurements with Siunitx}
 
