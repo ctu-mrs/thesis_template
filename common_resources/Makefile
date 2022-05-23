@@ -9,4 +9,4 @@ $(PROJNAME).pdf: $(PROJNAME).tex
 	latexmk -pdf -synctex=1 -verbose -interaction=nonstopmode -file-line-error -output-directory=$(BUILDDIR) $<
 
 clean:
-	latexmk -output-directory=$(BUILDDIR) -c && rm build/*
+	latexmk -output-directory=$(BUILDDIR) -c && rm -rf build/*
