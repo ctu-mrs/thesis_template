@@ -6,7 +6,7 @@ BUILDDIR=build
 all: $(PROJNAME).pdf
 
 $(PROJNAME).pdf: $(PROJNAME).tex
-	latexmk -pdf -verbose -interaction=nonstopmode -file-line-error -output-directory=$(BUILDDIR) $<
+	latexmk -pdf -synctex=1 -verbose -interaction=nonstopmode -file-line-error -output-directory=$(BUILDDIR) $<
 
 clean:
 	latexmk -output-directory=$(BUILDDIR) -c && rm build/*
