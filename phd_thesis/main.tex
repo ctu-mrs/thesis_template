@@ -153,8 +153,28 @@ The citation counts were gathered on {\color{red} \texttt{insert date here}}.
 %% | ----------------------- Appendix B ----------------------- |
 
 \renewcommand{\thechapter}{B}
-\renewcommand\chaptername{Appendix B}
+\renewcommand\chaptername{Citation of author's work}
 
-\chapter{Appendix B}
+\chapter{Citations of Author's Publications}
+
+Citations of the author's work were extracted from the Web~of~Science.
+First- and second-order self-citations are excluded.
+The data were gathered on {\color{red} insert date here}.
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\fullciteinbox{baca2021mrs}{}
+\begin{refsection}[citations/baca2021mrs.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=mycitations]
+\end{refsection}
 
 \end{document}
