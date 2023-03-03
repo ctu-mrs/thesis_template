@@ -74,9 +74,9 @@ The benefit of using \emph{Tikz}, instead of some other third-party drawing prog
   \item you can version the image in git,
   \item the images are easily adjustable while editing your document.
 \end{itemize}
-Check \reffig{fig:pgfplots} for example.
+Check \reffig{fig:pgfplots_diagram} for example.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
 
   \begin{adjustbox}{max totalsize={0.6\textwidth}{0.90\textheight}, center}
@@ -84,7 +84,7 @@ Check \reffig{fig:pgfplots} for example.
   \end{adjustbox}
 
   \caption{Example of a 2D diagram using tikz \emph{PGFPlots}.}
-  \label{fig:pgfplots}
+  \label{fig:pgfplots_diagram}
 \end{figure}
 
 \section{Data plots with PGFPlots}
@@ -94,15 +94,15 @@ The plot parameters can be versioned and easily adjusted by editing the plot def
 \begin{itemize}
   \item Documentation and manual: \url{https://ctan.org/pkg/pgfplots}
   \item Compile the plots individually and then include the pdfs because it can take longer.
-  \item Example located in \texttt{fig/plots/example\_plot}, see \reffig{fig:pgfplots}.
+  \item Example located in \texttt{fig/plots/example\_plot}, see \reffig{fig:pgfplots_data}.
   \item You could include the latex file directly. However, it will take longer to compile, and platforms such as Overleaf can have a problem with that.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{./fig/plots/example_plot/hypotheses.pdf}
   \caption{Example of a 2D plot using \emph{PGFPlots}.}
-  \label{fig:pgfplots}
+  \label{fig:pgfplots_data}
 \end{figure}
 
 \section{3D Plots with Sketch}
@@ -116,7 +116,7 @@ See the example image in \reffig{fig:coordinate_systems}.
   \item Cross-compilation from \emph{Sketch} to \emph{pdf} using the \texttt{fig/sketch/compile\_sketch.sh} script.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.4\textwidth]{./fig/sketch/coordinate_frames.pdf}
   \caption{Depiction of the used coordinate systems. The image was drawn using \emph{Sketch}.}
@@ -129,7 +129,7 @@ We recommend using the \emph{subfig} packages, which provides the \emph{subfloat
 It is more versatile than the simpler \emph{subcaption} package.
 Check the \reffig{fig:uavs} for example.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \subfloat[A UAV, the T650 model.] {
     \includegraphics[width=0.48\textwidth]{./fig/photos/uav1.jpg}
@@ -157,7 +157,7 @@ You can also define some nice citation boxes, such as this one:
 The overlay can be set such that the image is spanned by Cartesian coordinates $\left(x, y\right) \in \left[0, 1\right]^2$
 Example can be seen in \reffig{fig:tikz_overlay}.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
 
   \centering
 
