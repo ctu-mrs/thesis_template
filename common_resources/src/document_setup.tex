@@ -50,7 +50,7 @@
 \usepackage{verbatim}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
-\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks]{hyperref}
 \usepackage{multicol}
 \usepackage{subfig}
 \usepackage[export]{adjustbox}
@@ -65,6 +65,17 @@
 
 \hyphenation{}
 
+%% | --------------------- custom commands -------------------- |
+
+\definecolor{cvutblue}{cmyk}{1, 0.43, 0, 0}
+
+% set itemize: bullets type and color
+\renewcommand{\labelitemi}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+\renewcommand{\labelitemii}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+\renewcommand{\labelitemiii}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+\renewcommand{\labelitemiv}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+
+
 %% | ---------------------- abbreviations --------------------- |
 
 \usepackage[printonlyused]{acronym}
@@ -72,6 +83,18 @@
 % use to change margins around abbreviations block
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist
+
+%% | -------------------- hyper links setup ------------------- |
+\hypersetup{
+  linkcolor=black,
+  anchorcolor=black,
+  citecolor=cvutblue,
+  filecolor=black,
+  menucolor=black,
+  runcolor=black,
+  urlcolor=cvutblue
+}
+
 
 %% | -------------------------- tikz -------------------------- |
 
@@ -98,6 +121,8 @@
 \usepackage{enumitem}
 \setlist{nosep}
 
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
 %% | -------------------- table of contents ------------------- |
 
 \usepackage[subfigure]{tocloft}
@@ -107,10 +132,21 @@
 %% | ----------------- formatting of a chapter ---------------- |
 
 \usepackage{titlesec}
-\titleformat{\chapter}[block]
-{\normalfont\huge\bfseries}{Chapter \thechapter\\\vspace{0.1em}\\}{1em}{\Huge}
-% {?}{before}{after}
-\titlespacing*{\chapter}{0pt}{-1em}{2em}
+
+\titleformat{\chapter}[hang]{}{\color{cvutblue}\rule[-0.03cm]{0.50cm}{0.50cm}}{3.2\parskip}{\normalfont\bfseries\LARGE\thechapter\hspace{0.5cm}}
+\titlespacing*{\chapter}{0pt}{-1em}{1.5em}
+
+%% | ----------------- formatting of a section ---------------- |
+
+\titleformat{\section}[hang]{}{\hspace{0.11cm}\color{cvutblue}\rule[-0.02cm]{0.30cm}{0.30cm}}{3.7\parskip}{\normalfont\bfseries\large\thesection\hspace{0.5cm}}
+\titlespacing*{\section}{0pt}{1em}{0.5em}
+
+%% | --------------- formatting of a subsection --------------- |
+
+\titleformat{\subsection}[hang]{}{\hspace{0.16cm}\color{cvutblue}\rule[0.03cm]{0.20cm}{0.20cm}}{4.0\parskip}{\normalfont\bfseries\normalsize}
+\titlespacing*{\subsection}{0pt}{1em}{0.5em}
+
+
 
 %% | ------------------------ biblatex ------------------------ |
 
