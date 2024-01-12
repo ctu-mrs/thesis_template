@@ -141,6 +141,11 @@
 \titleformat{\section}[hang]{}{\hspace{0.11cm}\color{cvutblue}\rule[-0.02cm]{0.30cm}{0.30cm}}{3.7\parskip}{\normalfont\bfseries\large\thesection\hspace{0.5cm}}
 \titlespacing*{\section}{0pt}{1em}{0.5em}
 
+\titleformat{name=\section,numberless}[block]
+{\normalfont\large\bfseries}{}{}{\large}
+% {?}{before}{after}
+\titlespacing*{name=\section,numberless}{0pt}{-1em}{2em}
+
 %% | --------------- formatting of a subsection --------------- |
 
 \titleformat{\subsection}[hang]{}{\hspace{0.16cm}\color{cvutblue}\rule[0.03cm]{0.20cm}{0.20cm}}{4.0\parskip}{\normalfont\bfseries\normalsize}
