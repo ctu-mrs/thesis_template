@@ -1,0 +1,210 @@
+def uav_x -2.0
+def uav_y 1.2
+def uav_z -1.0
+def uav_roll 10
+def uav_pitch 120
+def uav_yaw 0
+def prop_radius 0.22
+def arm_len 0.5
+def pointer_coef 1.0
+
+% %{ coordinates
+
+def coordinates {
+
+  def size 1
+
+  line[arrows=->] (0, 0, 0)(size, 0, 0)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathbf{x}$}|
+    (size, 0, 0)
+
+  line[arrows=->] (0, 0, 0)(0, size, 0)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathbf{y}$}|
+    (0, size, 0)
+
+  line[arrows=->] (0, 0, 0)(0, 0, size)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathbf{z}$}|
+    (0, 0, size)
+}
+
+% %}
+
+% %{ heading
+
+def heading {
+
+  line[arrows=->] (0.0,0,0)(1.0,0,0.0)
+
+  def n_segs 64
+  sweep [linecolor=red] { n_segs, rotate(-(uav_pitch-90.0) / n_segs, (0,0.00,0), [0,1,0]) } (1.0,0.00,0)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\eta$}|
+    (1.20, -0.4, 0)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathbf{h}$}|
+    (1.0, 0.1, 0)
+}
+
+% %}
+
+% %{ propeller
+
+def propeller {
+
+  def n_segs 64
+  sweep { n_segs<>, rotate(360 / n_segs, (0,0,0), [0,1,0]) } line[linecolor=gray](-prop_radius,0,0)(0,0,0)
+}
+
+% %}
+
+% %}
+
+% %{ camera_coordinates
+
+def camera_coordinates {
+
+  def size 0.5
+
+  line[arrows=->] (0, 0, 0)(size, 0, 0)
+
+  special |\scriptsize
+    \uput{2pt}[u]#1{$\mathbf{\hat{c}}_x$}|
+    (size, 0, 0)
+
+  line[arrows=->] (0, 0, 0)(0, size, 0)
+
+  special |\scriptsize
+    \uput{2pt}[r]#1{$\mathbf{\hat{c}}_y$}|
+    (-0.02, size, 0)
+
+  line[arrows=->] (0, 0, 0)(0, 0, size)
+
+  special |\scriptsize
+    \uput{2pt}[dr]#1{$\mathbf{\hat{c}}_z$}|
+    (0, 0, size)
+
+  special |\scriptsize
+    \uput{3pt}[dr]#1{$\mathcal{C}$}|
+    (0.0, 0.0, 0)
+}
+
+% %}
+
+% %{ quadrotor
+
+def quadrotor {
+
+  def arrow_len 0.7
+
+  def p1 (0.7*arm_len, 0, 0.7*arm_len)
+  def p2 (0.7*arm_len, 0, -0.7*arm_len)
+  def stred (0,0,0)
+  def p3 (-0.7*arm_len, 0, 0.7*arm_len)
+  def p4 (-0.7*arm_len, 0, -0.7*arm_len)
+
+  put { translate([0.7*arm_len,0.01,0.7*arm_len]) } {propeller}
+  put { translate([-0.7*arm_len,0.01,0.7*arm_len]) } {propeller}
+  put { translate([0.7*arm_len,0.01,-0.7*arm_len]) } {propeller}
+  put { translate([-0.7*arm_len,0.01,-0.7*arm_len]) } {propeller}
+
+  def p44 (arrow_len,0,0)
+  def p11 (0,0,-arrow_len)
+
+  line[linecolor=black, arrows=->] (stred)(arrow_len,0,0)
+  line[linecolor=black, arrows=->] (stred)(0,0,-arrow_len)
+  line[linecolor=black, arrows=->] (0,0,0)(0,arrow_len,0)
+
+  special |\scriptsize
+    \uput{2pt}[u]#1{$\mathbf{\hat{b}}_y$}
+    \uput[d]#2{$\mathbf{\hat{b}}_x$}|
+    (0.0, 0, -arrow_len)(arrow_len, 0.0, 0)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathbf{\hat{b}}_z$}|
+    (0.0, arrow_len, 0)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathcal{B}$}|
+    (0.26, -0.3, 0)
+
+  put { rotate(90, (0,0,0), [0,1,0]) then translate([0.8, 0.0, 0.0]) } {camera_coordinates}
+}
+
+% %}
+
+% %{ world coordinates
+
+def world_coordinates {
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathcal{W}$}|
+    (0.2, 0.0, 0)
+
+  def ax_len 0.7
+
+  line[arrows=->] (0, 0, 0)(-ax_len, 0, 0)
+
+  special |\scriptsize
+    \uput{0pt}[ur]#1{$\mathbf{\hat{w}}_y$}|
+    (-ax_len, 0.0, 0)
+
+  line[arrows=->] (0, 0, 0)(0, 0, -ax_len)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathbf{\hat{w}}_x$}|
+    (0.6, 0.0, -ax_len-0.5)
+
+  line[arrows=->] (0, 0, 0)(0, ax_len, 0)
+
+  special |\scriptsize
+    \uput{2pt}[ul]#1{$\mathbf{\hat{w}}_z$}|
+    (0, ax_len, 0)
+}
+
+% %}
+
+% %{ grid
+
+def grid {
+
+  def grid_x 3
+  def grid_y 5
+  def cell_size 1
+
+  def x_offset -(grid_x*cell_size)
+  def y_offset -(grid_y*cell_size)
+
+  put { translate ([y_offset, 0, x_offset]) }
+    sweep [cull=false, linecolor=lightgray] { grid_x, translate([0,0,cell_size]) }
+      sweep [cull=false] { grid_y, translate([cell_size,0,0]) }
+        (0, 0, 0)
+}
+
+% %}
+
+def scene {
+
+  {world_coordinates}
+  put {translate ([0, -0.01, 0])} {grid}
+
+  put {
+    rotate(uav_roll, (0,0,0), [1,0,0]) then
+    rotate(uav_pitch, (0,0,0), [0,1,0]) then
+    rotate(uav_yaw, (0,0,0), [0,0,1]) then
+    translate ([uav_x, uav_y, uav_z])
+  } {quadrotor}
+}
+
+def eye (20.0,6.0,-7.0)
+def look_at (-5,-5,5)
+
+put { view((eye), (look_at)) then perspective(30.0) } {scene}
+% put { view((eye), (look_at)) } {scene}

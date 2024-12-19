@@ -1,0 +1,49 @@
+%!TEX root = ../main.tex
+
+\chapter{Introduction\label{chap:introduction}}
+
+First, introduce the reader to the research topic.
+Start with the most general view and slowly converge to the particular field, sub-field, and the challenges you face.
+You can cite others' work here \cite{baca2021mrs}.
+
+\section{Related works}
+
+This section should contain related state-of-the-art works and their relation to the author's work.
+We usually cite the original works like this \cite{benallegue2008high}.
+You can also cite multiple papers at once like this \cite{baca2016embedded, baca2021mrs}.
+
+\section{Contributions}
+
+This section should describe the author's contributions to the field of research.
+
+\section{Mathematical notation}
+
+It is a good practice to define basic mathematical notation in the introduction.
+See \reftab{tab:mathematical_notation} for an example.
+
+\begin{table*}[!h]
+  \scriptsize
+  \centering
+  \noindent\rule{\textwidth}{0.5pt}
+  \begin{tabular}{lll}
+    $\mathbf{x}$, $\bm{\alpha}$ & vector, pseudo-vector, or tuple\\
+    $\mathbf{\hat{x}}$, $\bm{\hat{\omega}}$& unit vector or unit pseudo-vector\\
+    $\mathbf{\hat{e}}_1, \mathbf{\hat{e}}_2, \mathbf{\hat{e}}_3$ & elements of the \emph{standard basis} \\
+    $\mathbf{X}, \bm{\Omega}$ & matrix \\
+    $\mathbf{I}$ & identity matrix \\
+    $x = \mathbf{a}^\intercal\mathbf{b}$ & inner product of $\mathbf{a}$, $\mathbf{b}$ $\in \mathbb{R}^3$\\
+    $\mathbf{x} = \mathbf{a}\times\mathbf{b}$ & cross product of $\mathbf{a}$, $\mathbf{b}$ $\in \mathbb{R}^3$\\
+    $\mathbf{x} = \mathbf{a}\circ\mathbf{b}$ & element-wise product of $\mathbf{a}$, $\mathbf{b}$ $\in \mathbb{R}^3$ \\
+    $\mathbf{x}_{(n)}$ = $\mathbf{x}^\intercal\mathbf{\hat{e}}_n$ & $\mathrm{n}^{\mathrm{th}}$ vector element (row), $\mathbf{x}, \mathbf{e} \in \mathbb{R}^3$\\
+    $\mathbf{X}_{(a,b)}$ & matrix element, (row, column)\\
+    $x_{d}$ & $x_d$ is \emph{desired}, a reference\\
+    $\dot{x}, \ddot{x}, \dot{\ddot{x}}$, $\ddot{\ddot{x}}$ & ${1^{\mathrm{st}}}$, ${2^{\mathrm{nd}}}$, ${3^{\mathrm{rd}}}$, and ${4^{\mathrm{th}}}$ time derivative of $x$\\
+    $x_{[n]}$ & $x$ at the sample $n$ \\
+    $\mathbf{A}, \mathbf{B}, \mathbf{x}$ & LTI system matrix, input matrix and input vector\\
+    \emph{SO(3)} & 3D special orthogonal group of rotations\\
+    \emph{SE(3)} & \emph{SO(3)}~$\times~\mathbb{R}^3$, special Euclidean group\\
+  \end{tabular}
+  \noindent\rule{\textwidth}{0.5pt}
+  \caption{Mathematical notation, nomenclature and notable symbols.}
+  \label{tab:mathematical_notation}
+\end{table*}

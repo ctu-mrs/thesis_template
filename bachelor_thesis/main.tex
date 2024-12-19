@@ -1,0 +1,153 @@
+% enable this to activate the version for PRINT
+% disable this to make the pdf symmetric and without white pages
+% => asymmetric alternating left/right margins
+% \newcommand*{\printversion}{}%
+
+%% | ---------------- document meta information --------------- |
+
+\newcommand{\Author}{John Smith}
+\newcommand{\Department}{Department of Cybernetics}
+\newcommand{\Supervisor}{Ing. My Supervisor, Ph.D.}
+\newcommand{\SupervisorSpecialist}{Ing. My Specialist, Ph.D.}
+\newcommand{\Programme}{Electrical Engineering and Information Technology}
+\newcommand{\Field}{Artificial Intelligence and Biocybernetics}
+\newcommand{\Title}{My Thesis Title\\[0.5em]Can Span Multiple Lines}
+\newcommand{\Keywords}{Unmanned Aerial Vehicles, Automatic Control}
+\newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Automatické Řízení}
+\newcommand{\Year}{2021}
+\newcommand{\Month}{January}
+\newcommand{\Date}{\Month~\Year}
+\newcommand{\Location}{Prague}
+
+%% | ---------------------- configuration --------------------- |
+
+% most of the configuration stuff happens here
+\input{src/document_setup.tex}
+
+%% | ---------------------- the contents ---------------------- |
+
+\begin{document}
+
+% this will prevent unwanted line overflows
+% http://latexref.xyz/_005cfussy-_0026-_005csloppy.html
+\sloppy
+
+\pagenumbering{roman}
+
+%% --------------------------------------------------------------
+%% |                         Title page                         |
+%% --------------------------------------------------------------
+
+\input{src/title}
+
+% set up the page style for the "intro" pages
+\pagestyle{plain}
+
+%% --------------------------------------------------------------
+%% |                       Acknowledgments                      |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\input{src/acknowledgments.tex}
+
+%% --------------------------------------------------------------
+%% |                         Assignment                         |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\includepdf{src/assignment.pdf}
+
+%% --------------------------------------------------------------
+%% |                         Declaration                        |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\input{src/declaration.tex}
+
+%% --------------------------------------------------------------
+%% |                          Abstracts                         |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\input{src/abstract_en.tex}
+
+\conditionalClearPage
+
+\input{src/abstrakt_cz.tex}
+
+%% --------------------------------------------------------------
+%% |                        Abbreviations                       |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\begin{changemargin}{0.8cm}{0.8cm}
+
+~\vfill{}
+
+\section*{Abbreviations}
+
+% this will print only the used abbreviations
+\input{src/abbreviations.tex}
+
+\vskip 2.5cm
+
+\end{changemargin}
+
+\conditionalClearPage
+
+%% --------------------------------------------------------------
+%% |                      Table of contents                     |
+%% --------------------------------------------------------------
+
+\tableofcontents
+
+\conditionalClearPage
+
+% set up the full page style with normal page numbering
+\pagestyle{full}
+\pagenumbering{arabic}
+
+%% --------------------------------------------------------------
+%% |                        introduction                        |
+%% --------------------------------------------------------------
+
+\input{src/introduction.tex}
+
+%% --------------------------------------------------------------
+%% |                How to write thesis in LaTeX                |
+%% --------------------------------------------------------------
+
+\input{src/how_to_write_thesis.tex}
+
+%% --------------------------------------------------------------
+%% |                         Conclusion                         |
+%% --------------------------------------------------------------
+
+\input{src/conclusion.tex}
+
+%% --------------------------------------------------------------
+%% |                         References                         |
+%% --------------------------------------------------------------
+
+\chapter{References}
+
+\printbibliography[heading=none,title={}]
+
+%% --------------------------------------------------------------
+%% |                         Appendices                         |
+%% --------------------------------------------------------------
+
+\appendix
+\renewcommand\chaptername{Appendix}
+
+\renewcommand{\thechapter}{A}
+\renewcommand\chaptername{Appendix A}
+
+\chapter{Appendix A}
+
+\end{document}

@@ -1,0 +1,343 @@
+%!TEX root = ../main.tex
+
+%% | ----------------------- page setup ----------------------- |
+
+% define documentclass based on the print/screen version of the document
+\pdfoutput=1
+\ifdefined\printversion
+  \documentclass[a4paper,11pt,twoside,openright]{book}
+\else
+  \documentclass[a4paper,11pt,twoside,openany]{book}
+\fi
+
+% define how "clearpage" works with the print/screen version of the document
+\newcommand{\conditionalClearPage}{
+  \ifdefined\printversion
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+}
+
+%% | ----------------- commonly used packages ----------------- |
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{amsmath,amsfonts,amssymb,bm}
+\usepackage{nicefrac}
+\usepackage{algorithm,algpseudocode}
+\usepackage[title,titletoc]{appendix}
+\usepackage{latexsym}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{fancyhdr,lastpage}
+\usepackage{longtable}
+\usepackage{pifont}
+\usepackage{makeidx}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{epstopdf}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{relsize}
+\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage{isotope}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage[colorlinks]{hyperref}
+\usepackage{multicol}
+\usepackage{subfig}
+\usepackage[export]{adjustbox}
+
+% print version has different margins to accommodate the spine of the book
+% do not move this around, or it stops working
+\ifdefined\printversion
+  \usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
+\else
+  \usepackage[a4paper,margin=3.2cm,inner=2.7cm,outer=2.7cm]{geometry}
+\fi
+
+\hyphenation{}
+
+%% | --------------------- custom commands -------------------- |
+
+\definecolor{cvutblue}{cmyk}{1, 0.43, 0, 0}
+
+% set itemize: bullets type and color
+\renewcommand{\labelitemi}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+\renewcommand{\labelitemii}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+\renewcommand{\labelitemiii}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+\renewcommand{\labelitemiv}{\textcolor{cvutblue}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}}
+
+
+%% | ---------------------- abbreviations --------------------- |
+
+\usepackage[printonlyused]{acronym}
+
+% use to change margins around abbreviations block
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+%% | -------------------- hyper links setup ------------------- |
+\hypersetup{
+  linkcolor=black,
+  anchorcolor=black,
+  citecolor=cvutblue,
+  filecolor=black,
+  menucolor=black,
+  runcolor=black,
+  urlcolor=cvutblue
+}
+
+
+%% | -------------------------- tikz -------------------------- |
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy,shapes,shapes.geometric,shapes.multipart,fit,patterns,fadings}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+%% | ------------ siunitx for units of measurements ----------- |
+
+\usepackage{siunitx}
+\DeclareSIUnit \parsec {pc}
+\DeclareSIUnit \electronvolt {eV}
+\DeclareSIUnit \pixel {px}
+\DeclareSIUnit \arcmin {arcmin}
+\DeclareSIUnit \erg {erg}
+\DeclareSIUnit \joul {J}
+
+%% | --------------- change formatting of lists --------------- |
+
+\usepackage{enumitem}
+\setlist{nosep}
+
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+%% | -------------------- table of contents ------------------- |
+
+\usepackage[subfigure]{tocloft}
+
+\tocloftpagestyle{plain}
+
+%% | ----------------- formatting of a chapter ---------------- |
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[hang]{}{\color{cvutblue}\rule[-0.03cm]{0.50cm}{0.50cm}}{3.2\parskip}{\normalfont\bfseries\LARGE\thechapter\hspace{0.5cm}}
+\titlespacing*{\chapter}{0pt}{-1em}{1.5em}
+
+%% | ----------------- formatting of a section ---------------- |
+
+\titleformat{\section}[hang]{}{\hspace{0.11cm}\color{cvutblue}\rule[-0.02cm]{0.30cm}{0.30cm}}{3.7\parskip}{\normalfont\bfseries\large\thesection\hspace{0.5cm}}
+\titlespacing*{\section}{0pt}{1em}{0.5em}
+
+\titleformat{name=\section,numberless}[block]
+{\normalfont\large\bfseries}{}{0pt}{\large}
+% {?}{before}{after}
+\titlespacing*{name=\section,numberless}{0pt}{-1em}{2em}
+
+%% | --------------- formatting of a subsection --------------- |
+
+\titleformat{\subsection}[hang]{}{\hspace{0.16cm}\color{cvutblue}\rule[0.03cm]{0.20cm}{0.20cm}}{4.0\parskip}{\normalfont\bfseries\normalsize}
+\titlespacing*{\subsection}{0pt}{1em}{0.5em}
+
+
+
+%% | ------------------------ biblatex ------------------------ |
+
+\usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=ydnt,sortcites=true]{biblatex}
+
+% define the source file with bibliography
+\addbibresource{main.bib}
+
+\renewcommand*{\bibfont}{\Font}
+
+% add suffix "a" to publications containing the keyword "mine"
+% add suffix "c" to publications containing the keyword "mine" && "core"
+\DeclareFieldFormat{labelnumber}{%
+  \ifkeyword{mine}
+    {\ifkeyword{core}
+      {{\number\numexpr#1}c}%
+      {{\number\numexpr#1}a}%
+    }%
+    {#1}%
+}
+
+\DeclareCiteCommand{\tabcite}%[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+
+% define fullciteinbox command
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinbox}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\begin{tcolorbox}[opacityfill=0.05,width=\textwidth,colback={cvutblue},colframe={cvutblue},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{0.07\linewidth}%
+\raggedright%
+\cite{#1}%
+\end{minipage}%
+\begin{minipage}[t]{0.93\linewidth}%
+\fullcite{#1}%
+\end{minipage}%
+\end{tcolorbox}%
+%}%
+\vspace{-0.3em}
+}%
+
+% change the bibliography font style
+% does not compile without this
+\let\bibfont\small
+
+% this is used to print citations of author's work
+\defbibenvironment{mycitations}
+{\itemize}
+{\enditemize}
+{\item}
+
+%% | ---------------------- custom macros --------------------- |
+
+\newcommand{\strong}[1]{\textbf{#1}}
+\newcommand{\coord}[1]{\textbf{#1}}
+\newcommand{\norm}[1]{\left\lvert#1\right\rvert}
+\newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\add}[1]{{\color{green} {#1}}}
+\newcommand{\todo}[1]{{\color{red} TODO {#1}}}
+\newcommand{\updated}[1]{{\color{blue} {#1}}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}
+\newcommand{\plus}{\scalebox{0.8}[0.8]{$+$}}
+\newcommand{\figvspace}{\vspace{-1em}}
+
+% referencing
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\reflst}[1]{Lst.~\ref{#1}}
+\newcommand{\refalg}[1]{Alg.~\ref{#1}}
+\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\refeq}[1]{\eqref{#1}}
+
+%% | ----------------- listings - showing code ---------------- |
+
+\usepackage{listings}     
+\usepackage{lstautogobble}  % Fix relative indenting
+\usepackage{color}          % Code coloring
+\usepackage{zi4}            % Nice font
+
+\definecolor{bluekeywords}{rgb}{0.13, 0.13, 1}
+\definecolor{greencomments}{rgb}{0, 0.5, 0}
+\definecolor{redstrings}{rgb}{0.9, 0, 0}
+\definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
+
+\usepackage{listings}
+\lstset{
+    autogobble,
+    columns=fullflexible,
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    showstringspaces=false,
+    breakatwhitespace=true,
+    escapeinside={(*@}{@*)},
+    commentstyle=\color{greencomments},
+    keywordstyle=\color{bluekeywords},
+    stringstyle=\color{redstrings},
+    numberstyle=\color{graynumbers},
+    basicstyle=\ttfamily\footnotesize,
+    frame=l,
+    framesep=12pt,
+    xleftmargin=12pt,
+    tabsize=4,
+    captionpos=b
+}
+
+%% | -------------------- layout parameters ------------------- |
+
+% no indent, free space between paragraphs
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+% offsets the head down
+\setlength{\headheight}{18pt}
+
+% foot line
+\renewcommand{\footrulewidth}{0.4pt}
+
+%% | -------------- define the 'full' page style -------------- |
+
+\fancypagestyle{full}{%
+
+  % clear the default layout
+  \fancyhead{}
+  \fancyfoot{}
+
+  % page header
+  \fancyhead[LO]{\leftmark}
+  \fancyhead[RE]{\rightmark}
+  \fancyhead[LE,RO]{\thepage/\pageref{LastPage}}
+
+  % page footer
+  \fancyfoot[L]{CTU in Prague}
+  \fancyfoot[R]{\Department}
+  \fancyfoot[C]{}
+}
+
+%% | -------------- define the 'plain' page style ------------- |
+
+\fancypagestyle{plain}{%
+
+  % clear the default layout
+  \fancyhead{}
+  \fancyfoot{}
+
+  % page header
+  \fancyhead[LE,RO]{\thepage}
+}
+
+%% | -------------- Adjust style of chapter names ------------- |
+
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+
+%% | -------- European layout, no extra space after '.' ------- |
+
+\frenchspacing
+
+%% | ----------- adjust the style of the first page ----------- |
+
+\makeatletter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                    \thispagestyle{full}% original style: plain
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\makeatother

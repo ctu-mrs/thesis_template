@@ -1,0 +1,289 @@
+%!TEX root = ../main.tex
+
+\chapter{How to write thesis in LaTeX\label{chap:how_to}}
+
+\section{Versioning with git}
+
+Write the LaTeX in such a way that it could be versioned by git, which will help when collaborating with other people.
+This means writing \textbf{one sentence per line}.
+Even when you use third-party platforms, such as the OverLeaf, you can still share the repository through Git.
+
+\section{Forming paragraphs}
+
+A paragraph is formed in LaTeX by an uninterrupted block of non-empty lines.
+It is recommended to keep a single sentence per line (helps with versioning using git).
+A new paragraph is started after an empty line.
+
+This is a new paragraph. It is strongly recommended to \textbf{avoid} the use of the \emph{newline} (\texttt{\textbackslash\textbackslash}) feature of LaTeX for forming paragraphs as it doesn't format the new paragraph properly (no space at beginning of the new paragraph).
+
+\section{Linguistic anti patterns}
+
+\subsection{Narrative}
+
+We recommend to write your thesis in plural form of the first-person narrative in combination with passive tense, e.g.:
+\begin{itemize}
+  \item We discourage the use of any other form, and/or
+  \item any other form is discouraged, but \textbf{not}
+  \item {\color{red} I discourage you from using the first-person narrative}.
+\end{itemize}
+Moreover, avoid \enquote{instructional} or \enquote{teacher}-like style of writing, such as {\color{red} \enquote{Now, we multiply the matrix $\mathbf{A}$ by the scalar $c$ to get the scaled matrix $\mathbf{B}$.}}
+A better way of writing the same information would be e.g. \enquote{Now, the scaled matrix $\mathbf{B}$ is obtained by multiplying the matrix $\mathbf{A}$ by the scalar $c$.}
+
+
+\subsection{Pronouns}
+
+The use of pronouns (it, this, they) is strongly \textbf{discouraged}.
+Although, pronouns make it easier for you as a writer to form the flow of the text, pronouns also make it much more difficult for the reader to follow the text.
+The reader is forced to retain more of the context to substitute and understand what the author meant.
+Moreover, pronouns can easily become vague (there is more than one way how to interpret them) and can become invalid while making editorial changes to the text, i.e., when moving sentences around.
+A technical text should be written in a way that makes it as easy to read and comprehend as possible and as hard to misunderstand or misinterpret as possible at the same time.
+
+\section{Mathematical notation with LaTeX}
+
+Take care to use the correct mathematical symbols and common ways of denoting mathematical concepts.
+Use bold fonts to visually distinguish vectors and matrices ($\mathbf{x}$, $\mathbf{A}$) and scalars ($k$, $N$).
+
+\subsection{Common errors}
+A frequent error, carried over from programming languages, is using the asterisk symbol ($*$) to denote multiplication.
+The asterisk correctly denotes convolution.
+Similarly, the cross sign ($\times$) typically denotes the cross product (it can also used for stating dimensions, such as $\SI{10}{\metre} \times \SI{10}{\metre}$) and thus should not be used for scalar multiplication.
+In English mathematical notation, \textbf{scalar multiplication is typically not denoted at all}.
+
+This custom may sometimes make it unclear whether a sequence of letters denotes multiplication of several scalars or a multi-letter variable, such as
+{\color{red}%
+\begin{equation}
+  T = T0 + coeff meas,
+\end{equation}
+where the variables in this hypothetical equation are $T$, $T0$, $coeff$ and $meas$.}
+For this reason, \textbf{avoid using multi-letter variable naming} and strive to denote mathematical variables with single letters optionally a with lower or upper index, or other modifiers (\texttt{\textbackslash{}hat}, \texttt{\textbackslash{}bar}, etc.).
+The equation above could be modified to be
+\begin{equation}
+  T = T_0 + cT_{\text{meas}}.
+\end{equation}
+If the multiplication is still unclear (e.g. when multiplying many single-letter scalars), the \texttt{\textbackslash{}cdot} symbol may be used such as
+\begin{equation}
+  P\cdot V = n\cdot R\cdot T.
+\end{equation}
+
+\subsection{Equations}
+Mathematical equations should be numbered and should be a part of a sentence.
+For example, a discrete LTI system update is described as
+\begin{equation}
+  \mathbf{x}_{\left[k+1\right]} = \mathbf{A}\mathbf{x}_{\left[k\right]} + \mathbf{B}\mathbf{u}_{\left[k\right]},
+  \label{eq:lti_system}
+\end{equation}
+where $\mathbf{x}_{\left[k\right]} \in \mathbb{R}^m$ is the state vector at the sample $k$, $\mathbf{u}_{\left[k\right]} \in \mathbb{R}^n$ is the input vector, $\mathbf{A} \in \mathbb{R}^{m \times m}$ is the main system matrix, and $\mathbf{B} \in \mathbb{R}^{m \times n}$ is the system input matrix.
+Proper punctuation should be used after the equation, as if it were an ordinary object in the sentence.
+
+Do not put any empty lines before the equation.
+If the sentence that the equation is a part of continues after the equation (as is the case here), do not put empty lines after the equation either.
+That would create a new paragraph mid-sentence.
+{\color{red}
+For an example of how not to do it, the equation
+
+\begin{equation}
+  \mathrm{\sigma}(x) = \frac{1}{1 + e^{-x}}
+\end{equation}
+
+describes the logistic function often used in machine learning.
+}
+Observe how a new paragraph is created for the equation and then for this block of text (compare with the proper typesetting above).
+Not only does this not look correct, it may also cause incorrect page breaking.
+
+\section{Using footnotes}
+
+Do not be afraid to use footnotes for additional information, such as http links\footnote{This repository: \url{https://github.com/ctu-mrs/thesis_template}.}.
+We use footnote links whenever we want to \emph{point} to a website, rather then to cite it as a source.
+Like with everything, do not overdo it.
+
+\section{Referencing document elements}
+
+LaTeX allows you to dynamically reference to parts of the documents, such as
+\begin{itemize}
+  \item figures: \reffig{fig:uavs}, Figure\,\ref{fig:uavs},
+  \item equations: eq.~\refeq{eq:lti_system}, \refeq{eq:lti_system},
+  \item code: \reflst{lst:references},
+  \item and any other object that can contain a \texttt{\textbackslash{}label}.
+\end{itemize}
+Check the section in the \texttt{document\_setup.tex} that contains useful macros for unifying the references:
+\begin{lstlisting}[caption={LaTeX macros for referencing to document elements.},label={lst:references}]
+  \newcommand{\reffig}[1]{Fig.~\ref{#1}}
+  \newcommand{\reflst}[1]{Lst.~\ref{#1}}
+  \newcommand{\refalg}[1]{Alg.~\ref{#1}}
+  \newcommand{\refsec}[1]{Sec.~\ref{#1}}
+  \newcommand{\reftab}[1]{Table~\ref{#1}}
+  \newcommand{\refeq}[1]{\eqref{#1}}
+\end{lstlisting}
+
+\section{Abbreviations with Acronym}
+
+Abbreviations are handled by the \emph{acronym} package.
+Example sentence with abbreviations: ``\ac{UAV} is a flying vehicle that commonly uses \ac{LiDAR} and \ac{GPS} receiver''.
+Note that the acronyms are only explained once in the document by default.
+It is good practice to re-explain acronyms used both in the abstract and the rest of the document as the abstract is often presented separately.
+This can be achieved by resetting the internal status of the acronyms (\enquote{forgetting} that they were explained) using the \texttt{\textbackslash{}acresetall} command after the abstract.
+Please, read the documentation\footnote{Acronym package: \url{http://mirrors.ctan.org/macros/latex/contrib/acronym/acronym.pdf}}.
+
+\section{Units of measurements with Siunitx}
+
+Typesetting of units has never been more accessible with the Siunitx package.
+Acceleration is measured in \si{\meter\per\second\squared}.
+Gravity accelerates objects at a rate $\approx \SI{9.81}{\meter\per\second\squared}$ near the sea level.
+You can define your units if you want.
+
+\section{Hyphens and dashes}
+
+Hyphens and dashes are the various form of the symbol \enquote{-} used in many situations.
+There are also various ways how to typeset the symbol in LaTeX.
+\begin{itemize}
+  \item The \emph{hyphen} is used to compound words, e.g., \enquote{the eye-opener}. The hyphen is typeset as a single \emph{minus}/\emph{hyphen} character: \texttt{-}.
+  \item The \emph{en-dash} is used to specify ranges of values, e.g., \enquote{between 2--10}. The en-dash is typeset as two consecutive hyphens characters: \texttt{--}.
+  \item The \emph{em-dash} is used to separate complex sentences in place of commas, parenthesis and colons --- each with its particular rules. The em-dash is typeset as three consecutive hyphens characters: \texttt{---}.
+\end{itemize}
+Check the \url{https://www.thepunctuationguide.com/} for all the details.
+
+\section{Double quotation marks}
+
+\enquote{Double quotes} in English are composed of a pair of opening (``) and closing ('') symbols.
+The opening symbol is typeset as two backtick characters: \texttt{``} (typically below the \texttt{Esc} key on the English keyboard), and the closing quotes as two apostrophes: \texttt{''}.
+The LaTeX engine will convert them automatically to the opening and closing symbols.
+A more robust solution is to use the \texttt{csquotes} package and the \texttt{\textbackslash{}enquote} command which also takes care of nested quoting and other peculiarities.
+
+\section{2D Diagrams with Tikz}
+
+\emph{Tikz} is a powerful tool for drawing 2D (and 3D) shapes and diagrams.
+Check the documentation and examples: \url{https://www.overleaf.com/learn/latex/TikZ_package}.
+The benefit of using \emph{Tikz}, instead of some other third-party drawing program, are:
+\begin{itemize}
+  \item fonts are the same as in LaTeX,
+  \item you can typeset math in LaTeX,
+  \item you can use references to other parts of your document,
+  \item you can version the image in git,
+  \item the images are easily adjustable while editing your document.
+\end{itemize}
+Check \reffig{fig:pgfplots_diagram} for example.
+
+\begin{figure}[htbp]
+  \centering
+
+  \begin{adjustbox}{max totalsize={0.6\textwidth}{0.90\textheight}, center}
+    \input{fig/tikz/example_diagram.tex}
+  \end{adjustbox}
+
+  \caption{Example of a 2D diagram using tikz \emph{PGFPlots}.}
+  \label{fig:pgfplots_diagram}
+\end{figure}
+
+\section{Data plots with PGFPlots}
+
+\emph{PGFPlots} produces nice 2D and 3D data plots from data stored in CSV.
+The plot parameters can be versioned and easily adjusted by editing the plot definition file.
+\begin{itemize}
+  \item Documentation and manual: \url{https://ctan.org/pkg/pgfplots}
+  \item Compile the plots individually and then include the pdfs because it can take longer.
+  \item Example located in \texttt{fig/plots/example\_plot}, see \reffig{fig:pgfplots_data}.
+  \item You could include the latex file directly. However, it will take longer to compile, and platforms such as Overleaf can have a problem with that.
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\textwidth]{./fig/plots/example_plot/hypotheses.pdf}
+  \caption{Example of a 2D plot using \emph{PGFPlots}.}
+  \label{fig:pgfplots_data}
+\end{figure}
+
+\section{3D Plots with Sketch}
+
+\emph{Sketch} is a tool for defining a 3D scene using simple descriptive language.
+The 3D scene is then converted to \emph{Tikz}, which is later compiled to pdf.
+The benefits of using \emph{Sketch} are similar to using \emph{Tikz}: LaTeX fonts, versioning using git, and cleanness of the result.
+See the example image in \reffig{fig:coordinate_systems}.
+\begin{itemize}
+  \item Documentation and manual: \url{http://www.frontiernet.net/~eugene.ressler/}
+  \item Cross-compilation from \emph{Sketch} to \emph{pdf} using the \texttt{fig/sketch/compile\_sketch.sh} script.
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{./fig/sketch/coordinate_frames.pdf}
+  \caption{Depiction of the used coordinate systems. The image was drawn using \emph{Sketch}.}
+  \label{fig:coordinate_systems}
+\end{figure}
+
+\section{Image collages with Subfig}
+
+We recommend using the \texttt{subfig} package, which provides the \texttt{\textbackslash{}subfloat} command.
+It is more versatile than the simpler \texttt{subcaption} package.
+Check \reffig{fig:uavs} for an example.
+
+\begin{figure}[htbp]
+  \centering
+  \subfloat[A UAV, the T650 model.] {
+    \includegraphics[width=0.48\textwidth]{./fig/photos/uav1.jpg}
+    \label{fig:uavs_1}
+  }
+  \subfloat[Another UAV, again, the T650 model.] {
+    \includegraphics[width=0.48\textwidth]{./fig/photos/uav2.jpg}
+    \label{fig:uavs_2}
+  }
+  \caption{
+The caption should mention both subfigures, the \reffig{fig:uavs_1} and the \reffig{fig:uavs_2}.
+You can just refer to them as (a) and (b) in the main Figure's caption, but beware, you need to keep it correct as you edit.
+}
+  \label{fig:uavs}
+\end{figure}
+
+\section{Citations with Biblatex}
+
+\emph{Biblatex} is probably the most powerful citation package for LaTeX.
+It consumes the standard \texttt{.bib} file. However, it can sort and filter the citations using the \texttt{keywords} tag.
+Citing references is done using the \texttt{cite} command, e.g., \cite{baca2021mrs}.
+You can also define some nice citation boxes, such as this one:
+\fullciteinbox{baca2021mrs}{}
+
+\section{Image overlays with Tikz}
+
+\emph{Tikz} is very useful to create custom image overlays.
+The overlay can be set such that the image is spanned by Cartesian coordinates $\left(x, y\right) \in \left[0, 1\right]^2$
+Example can be seen in \reffig{fig:tikz_overlay}.
+
+\begin{figure}[!t]
+
+  \centering
+
+  \input{fig/tikz/overlay_example.tex}
+
+  \caption{Example of using Tikz for image overlays. (a) shows a final product, (b) shows a grid useful for nailing down the coordinates.}
+  \label{fig:tikz_overlay}
+
+\end{figure}
+
+\section{General tips}
+
+In general, strive to make the paper easy to read and understand, and hard to misunderstand or misinterpret.
+Here are some more specific tips on how to achieve that (and other general suggestions).
+
+\begin{itemize}
+  \item
+    \textbf{Be consistent.}
+    This applies in all contexts.
+    For example, if you decide to use the name \enquote{LiDAR}, do not mix it with \enquote{LIDAR} or \enquote{Lidar},
+    do not mix different mathematical notations,
+    ensure your Figures have the same style and use the same graphics for the same concepts,
+    etc.
+  \item 
+    After you finish writing or modifying any of:
+    \begin{itemize}
+      \item a sentence,
+      \item a paragraph,
+      \item a section/chapter,
+      \item the whole paper/thesis,
+    \end{itemize}
+    \textbf{re-read it} to make sure that it makes sense, it is coherent and correct, and doesn't contain typos.
+  \item
+    If you're using a LLM-based tool (ChatGPT etc.) for grammar-proofing or even formulation of sentences, \textbf{do not just copy-paste its response} to your query.
+    The previous rule applies doubly here.
+    LLMs tend to often produce confident-sounding nonsense, sentences with reformulated duplicated content, or with a slightly changed meaning.
+    They are a good tool to get inspiration to start writing about a subject, for grammar-checking, or for finding alternative, nice-sounding formulations, but they can lie or warp facts --- take care when using them!
+
+\end{itemize}

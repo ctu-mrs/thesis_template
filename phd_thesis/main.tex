@@ -1,0 +1,180 @@
+% enable this to activate the version for PRINT
+% disable this to make the pdf symmetric and without white pages
+% => asymmetric alternating left/right margins
+% \newcommand*{\printversion}{}%
+
+%% | ---------------- document meta information --------------- |
+
+\newcommand{\Author}{Ing. John Smith}
+\newcommand{\Department}{Department of Cybernetics}
+\newcommand{\Supervisor}{Ing. My Supervisor, Ph.D.}
+\newcommand{\SupervisorSpecialist}{Ing. My Specialist, Ph.D.}
+\newcommand{\Programme}{Electrical Engineering and Information Technology}
+\newcommand{\Field}{Artificial Intelligence and Biocybernetics}
+\newcommand{\Title}{My Thesis Title\\[0.5em]Can Span Multiple Lines}
+\newcommand{\DocName}{Doctoral Thesis}
+\newcommand{\Keywords}{Unmanned Aerial Vehicles, Automatic Control}
+\newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Automatické Řízení}
+\newcommand{\Year}{2021}
+\newcommand{\Month}{January}
+\newcommand{\Date}{\Month~\Year}
+\newcommand{\Location}{Prague}
+
+%% | ---------------------- configuration --------------------- |
+
+% most of the configuration stuff happens here
+\input{src/document_setup.tex}
+
+%% | ---------------------- the contents ---------------------- |
+
+\begin{document}
+
+\pagenumbering{roman}
+
+%% --------------------------------------------------------------
+%% |                         Title page                         |
+%% --------------------------------------------------------------
+
+\input{src/title}
+
+% set up the page style for the "intro" pages
+\pagestyle{plain}
+
+%% --------------------------------------------------------------
+%% |                       Acknowledgments                      |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\input{src/acknowledgments.tex}
+
+%% --------------------------------------------------------------
+%% |                          Copyright                         |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\input{src/copyright.tex}
+
+%% --------------------------------------------------------------
+%% |                          Abstracts                         |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\input{src/abstract_en.tex}
+
+\conditionalClearPage
+
+\input{src/abstrakt_cz.tex}
+
+%% --------------------------------------------------------------
+%% |                        Abbreviations                       |
+%% --------------------------------------------------------------
+
+\conditionalClearPage
+
+\begin{changemargin}{0.8cm}{0.8cm}
+
+~\vfill{}
+
+\section*{Abbreviations}
+
+% this will print only the used abbreviations
+\input{src/abbreviations.tex}
+
+\vskip 2.5cm
+
+\end{changemargin}
+
+\conditionalClearPage
+
+%% --------------------------------------------------------------
+%% |                      Table of contents                     |
+%% --------------------------------------------------------------
+
+\tableofcontents
+
+\conditionalClearPage
+
+% set up the full page style with normal page numbering
+\pagestyle{full}
+\pagenumbering{arabic}
+
+%% --------------------------------------------------------------
+%% |                        introduction                        |
+%% --------------------------------------------------------------
+
+\input{src/introduction.tex}
+
+%% --------------------------------------------------------------
+%% |                How to write thesis in LaTeX                |
+%% --------------------------------------------------------------
+
+\input{src/how_to_write_thesis.tex}
+
+%% --------------------------------------------------------------
+%% |                         Conclusion                         |
+%% --------------------------------------------------------------
+
+\input{src/conclusion.tex}
+
+%% --------------------------------------------------------------
+%% |                         Appendices                         |
+%% --------------------------------------------------------------
+
+\appendix
+\renewcommand\chaptername{Appendix}
+
+%% | ----------------- Appendix A - References ---------------- |
+
+\chapter{References}
+
+References to the author's work are listed first, followed by other references cited within this work.
+The authored references contain his contribution and the number of citations based on Web~of~Science~(WoS), Scopus, and Google Scholar~(GS).
+The citation counts were gathered on {\color{red} \texttt{insert date here}}.
+
+\section{Thesis core publications}
+
+\subsection*{Core articles in peer-reviewed journals}
+
+\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={core},notkeyword={submitted},heading=none,title={}]
+
+\section{Thesis-related author's publications}
+
+\subsection*{Thesis-related conference articles}
+
+\printbibliography[keyword={mine},keyword={phd_related},keyword={conference},notkeyword={core},notkeyword={submitted},heading=none,title={}]
+
+\section{Cited references}
+
+\printbibliography[notkeyword=mine,heading=none,title={}]
+
+%% | ----------------------- Appendix B ----------------------- |
+
+\renewcommand{\thechapter}{B}
+\renewcommand\chaptername{Citation of author's work}
+
+\chapter{Citations of Author's Publications}
+
+Citations of the author's work were extracted from the Web~of~Science.
+First- and second-order self-citations are excluded.
+The data were gathered on {\color{red} insert date here}.
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\fullciteinbox{baca2021mrs}{}
+\begin{refsection}[citations/baca2021mrs.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=mycitations]
+\end{refsection}
+
+\end{document}
