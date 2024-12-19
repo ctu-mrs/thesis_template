@@ -32,7 +32,7 @@ else
   dvips -Ppdf -G0 "$NAME.dvi"
   rm "$NAME.dvi"
 
-  ps2pdf -dNOSAFER "$NAME.ps"
+  ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY "$NAME.ps"
   pdfcrop "$NAME.pdf" "$NAME.pdf"
 
   rm "$NAME.ps"
